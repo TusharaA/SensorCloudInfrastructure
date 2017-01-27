@@ -1,0 +1,7 @@
+node_modules/*
+.idea/*
+.jshintrc
+.project
+.settings/
+.tern-project
+npm-debug.log

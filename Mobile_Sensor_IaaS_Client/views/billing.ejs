@@ -1,0 +1,103 @@
+<!-- page content -->
+
+<div class="right_col" role="main" ng-init="init()" ng-controller="billingController">
+    <div class="row">
+        <h1>Invoice</h1>
+        <h1>Total: ${{totalCost + tax | number: 2}}</h1>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title">Detail</th>
+                                <th class="column-title">Id</th>
+                                <th class="column-title">Sensor Cluster </th>
+                                <th class="column-title"> Charges </th>
+
+                            </thead>
+
+                            <tbody>
+                            <tr class="even pointer" ng-repeat="sensor in sensorHubList">
+                                <td class="a-center ">
+                                    <input type="radio" class="flat" name="table_records" ng-click="getSensorList(sensor.SensorHubName)">
+                                </td>
+                                <td class=" ">{{sensor.id}}</td>
+                                <td class=" ">{{sensor.SensorHubName}}</td>
+                                <td class=" ">${{sensor.cost | number: 2}}</td>
+                            </tr>
+                            <tr>
+                                <td class=" "></td>
+                                <td class=" "></td>
+                                <td class=" "><b>Sub Total</b></td>
+                                <td class=" "><b>${{totalCost | number: 2}}</b></td>
+                            </tr>
+                            <tr>
+                                <td class=" "></td>
+                                <td class=" "></td>
+                                <td class=" "><b>Data storage Service</b></td>
+                                <td class=" "><b>${{ tax | number :2}}</b></td>
+                            </tr>
+                            <tr>
+                                <td class=" "></td>
+                                <td class=" "></td>
+                                <td class=" "><h3>Total Cost</h3></td>
+                                <td class=" "><h3>${{totalCost + tax |number: 2}}</h3></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6" style="width:600px; margin:0 auto;" ng-hide="hideIndividualBill">
+            <div class="x_panel">
+            <div class="table-responsive">
+                <table class="table table-striped jambo_table bulk_action">
+                    <thead>
+                    <tr class="headings">
+                        <th class="column-title">Sensor Id</th>
+                        <th class="column-title">Usage In Hours </th>
+                        <th class="column-title">Charges Per Hour </th>
+                        <th class="column-title">Charges In Dollars </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr class="even pointer" ng-repeat="sensorRecord in sensorInstanceslist">
+                        <td class=" ">{{sensorRecord.sensorId}}</td>
+                        <td class=" ">{{sensorRecord.usage | number:2}} hrs</td>
+                        <td class=" ">{{sensorRecord.chargesPerHour |number: 2}}/hr</td>
+                        <td class=" ">${{sensorRecord.cost |number: 2}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<img alt="Visa Checkout" class="v-button" role="button"
+     src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"/>

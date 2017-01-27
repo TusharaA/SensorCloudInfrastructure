@@ -1,0 +1,251 @@
+<!-- page content -->
+<div class="right_col" role="main" ng-init="getUserSensorDetailsMonitorAdmin()">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Monitor Sensors </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <p>Select the sensor by selecting the checkbox</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="radio" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Id</th>
+                                <th class="column-title">User Name</th>
+                                <th class="column-title">Sensor Cluster </th>
+                                <th class="column-title">Sensor Id </th>
+                                <th class="column-title">Sensor Type </th>
+                                <th class="column-title">Status</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="even pointer" ng-repeat="sensor in sensorlist">
+                                <td class="a-center " ng-click="monitorSensor(sensor)">
+                                    <input type="radio" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">{{$index + 1}}</td>
+                                <td class=" ">{{sensor.UserName}}</td>
+                                <td class=" ">{{sensor.SensorHubName}}</td>
+                                <td class=" ">{{sensor.SensorId}}</td>
+                                <td class=" ">{{sensor.SensorType}}</td>
+                                <td class=" ">{{sensor.Status}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Monitor Selected sensor</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sensorCluster">Sensor Cluster <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="sensorCluster" required="required" class="form-control col-md-7 col-xs-12" value={{selectedSensor.SensorHubName}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sensorType">Sensor Type<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="sensorType" name="sensorType" required="required" class="form-control col-md-7 col-xs-12" value = {{selectedSensor.SensorType}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Sensor Id<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="sensorId" name="sensorId" required="required" class="form-control col-md-7 col-xs-12" value={{selectedSensor.SensorId}}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Choose Date<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="datetime-local" id="startDate" name="startDate" required="required" class="form-control col-md-7 col-xs-12" ng-model="startDate" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary" id="monSensor" name="monSensor" ng-click="monSensor(selectedSensor.SensorId)">Monitor</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div ng-hide = "hideErrormessage"><br/><br/>
+                                <div align = "center"><h2 style="color:red"> {{displayerrormessage}}</h2></div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Monitor Status of Selected Sensor</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" ng-hide="hideSensorManager">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group" style="color:green">
+                            <h2>The selected sensor is {{message}} successfully
+                            </h2>
+                        </div>
+
+                    </form>
+                </div>
+                <div ng-hide = "hideMonitoringDetails">
+
+                    <section id="plans">
+                        <div class="container">
+                            <div class="row">
+                                <div ng-hide = "hideGraph">
+                                    <!-- item -->
+                                    <div class="col-md-4 text-center">
+                                        <div class="panel panel-pricing customizemine">
+                                            <div class="panel-heading">
+                                                <i class="fa"><img src = "./images/Metrics.png" width="50" height="50"></i>
+                                                <h3>Sensor Utilization</h3>
+                                            </div>
+                                            <div class="panel-body text-center customizemine1">
+                                                <p><div style="height:300px;width:300px;margin:0 auto;">
+                                                    <canvas id="pie" class="chart chart-pie"
+                                                            chart-data="data" chart-labels="labels" chart-options="options" chart-colors="colours">
+                                                    </canvas>
+                                                </div></p>
+                                            </div>
+
+                                            <div class="panel-footer">
+                                                <b>  Average : {{cpuUtilizationAvg | number:4}}</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /item -->
+
+                                    <!-- item -->
+                                    <div class="col-md-4 text-center">
+                                        <div class="panel panel-pricing customizemine">
+                                            <div class="panel-heading">
+                                                <i class="fa"><img src = "./images/Metrics.png" width="50" height="50"></i>
+                                                <h3>Incoming Traffic</h3>
+                                            </div>
+                                            <div class="panel-body text-center">
+                                                <p><div style="height:300px;width:300px;margin:0 auto;">
+                                                    <canvas id="pie" class="chart chart-pie"
+                                                            chart-data="dataNetIn" chart-labels="labelsNetIn" chart-options="options" chart-colors="colours">
+                                                    </canvas>
+                                                </div></p>
+                                            </div>
+
+                                            <div class="panel-footer">
+                                                <b>  Average : {{networkInMet | number:4}}</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /item -->
+
+                                    <!-- item -->
+                                    <div class="col-md-4 text-center">
+                                        <div class="panel panel-pricing customizemine">
+                                            <div class="panel-heading">
+                                                <i class="fa"><img src = "./images/Metrics.png" width="50" height="50"></i>
+                                                <h3>Outgoing Traffic</h3>
+                                            </div>
+                                            <div class="panel-body text-center">
+                                                <p><div style="height:300px;width:300px;margin:0 auto;">
+                                                    <canvas id="pie" class="chart chart-pie"
+                                                            chart-data="dataNetOut" chart-labels="labelsNetOut" chart-options="options" chart-colors="colours">
+                                                    </canvas>
+                                                </div></p>
+                                            </div>
+
+                                            <div class="panel-footer">
+                                                <b>  Average : {{networkOutMet | number:4}}</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /item -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="x_content" ng-hide="hideGraphDetails">
+                    <div align = "center"><h2 style="color:forestgreen">{{messgae}}</h2></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

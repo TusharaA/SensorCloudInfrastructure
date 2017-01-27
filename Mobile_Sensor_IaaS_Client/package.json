@@ -1,0 +1,23 @@
+{
+  "name": "281team14",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "angular-chart.js": "^1.0.3",
+    "angular-ui-bootstrap": "^2.2.0",
+    "body-parser": "~1.15.2",
+    "chart.js": "^2.4.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.5.2",
+    "envs": "^0.1.6",
+    "express": "~4.14.0",
+    "express-session": "^1.14.2",
+    "morgan": "~1.7.0",
+    "mysql": "^2.12.0",
+    "serve-favicon": "~2.3.0"
+  }
+}

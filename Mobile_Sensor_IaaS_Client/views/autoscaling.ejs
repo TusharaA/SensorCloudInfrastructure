@@ -1,0 +1,254 @@
+<!-- page content -->
+<div class="right_col" role="main" ng-init="chooseSensorHub()">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Select Sensor Hub</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br/>
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Sensor Cluster</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select ng-change="listSensor()" id="hubname" name="hubname" class="select2_group form-control" ng-model="hubname" ng-options="name.SensorHubName as name.SensorHubName for name in hubnamelist">
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Sensor Type</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select ng-change="listsensorTypeRegion()" id="sensorType" name="sensorType" class="form-control" ng-model="sensorType" ng-options="list.SensorType as list.SensorType for list in sensorlist">
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Sensor Region</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select id="sensorRegion" name="sensorRegion" class="form-control" ng-model="sensorRegion" ng-options="list.Region as list.Region for list in sensorRegions">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button type="submit" class="btn btn-success" id="sensorTypes" name="sensorTypes"
+                                        ng-click="getSensorTypeCount()">Show Sensor Instances Info
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Autoscale the required sensor types</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br/>
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sensorCluster">Sensor Cluster <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="sensorCluster" required="required" class="form-control col-md-7 col-xs-12" value={{hubname}} readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sensorType">Sensor Type<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="sensorType" name="sensorType" required="required" class="form-control col-md-7 col-xs-12" value = {{sensorType}} readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sensorType">Sensor Region<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="sensorRegion" name="sensorRegion" required="required" class="form-control col-md-7 col-xs-12" value = {{sensorRegion}} readonly>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Sensors Available</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="sensorTypeCount" name="sensorTypeCount" required="required" class="form-control col-md-7 col-xs-12" value = {{sensorTypeCount}} readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Minimum Required: </label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input type="text" id="minimumCount" name="minimumCount" ng-model="minimumCount" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Maximum Required: </label>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <input type="text" id="maximumCount" name="maximumCount" ng-model="maximumCount" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button type="submit" class="btn btn-success" id="sensorTypes" name="sensorTypes"
+                                        ng-click="autoscale()"> AutoScale
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12" ng-hide="addedResultsDetails">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>The following Sensors are added to the sensor cluster</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title"># </th>
+                                <th class="column-title">Sensor Cluster</th>
+                                <th class="column-title">Sensor Type </th>
+                                <th class="column-title">Sensor Id </th>
+
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="odd pointer" ng-repeat="sensor in addedSensors">
+                                <td class=" ">{{sensor.index}}</td>
+                                <td class=" ">{{sensor.sensorhubname}}</td>
+                                <td class=" ">{{sensor.SensorType}}</td>
+                                <td class=" ">{{sensor.SensorId}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12" ng-hide="deletedResultsDetails">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>The following sensors are deleted from the sensor cluster</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title"># </th>
+                                <th class="column-title">Sensor Cluster</th>
+                                <th class="column-title">Sensor Type </th>
+                                <th class="column-title">Sensor Id </th>
+
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="odd pointer" ng-repeat="sensor in deletedSensors">
+                                <td class=" ">{{sensor.index}}</td>
+                                <td class=" ">{{sensor.sensorhubname}}</td>
+                                <td class=" ">{{sensor.SensorType}}</td>
+                                <td class=" ">{{sensor.SensorId}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

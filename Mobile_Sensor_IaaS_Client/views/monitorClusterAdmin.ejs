@@ -1,0 +1,183 @@
+<!-- page content -->
+<div class="right_col" role="main" ng-init="getUserSensorDetailsMonitorClusterAdmin()">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Monitor Clusters </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <p>Select the cluster by selecting the checkbox</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="radio" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Id</th>
+                                <th class="column-title">Sensor Cluster Name</th>
+                                <th class="column-title">Total Sensors</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="even pointer" ng-repeat="sensor in sensorlist">
+                                <td class="a-center " ng-click="monitorClusterAdmin(sensor.SensorHubName)">
+                                    <input type="radio" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">{{$index + 1}}</td>
+                                <td class=" ">{{sensor.SensorHubName}}</td>
+                                <td class=" ">{{sensor.Count}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Monitor Results </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <p>Monitoring Results for cluster {{sensor.SensorHubName}} is as follows</p>
+
+                    <div class="table-responsive" ng-hide = "hideClusterMonitor">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="radio" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Id</th>
+                                <th class="column-title">Sensor Cluster Name</th>
+                                <th class="column-title">Sensor Id</th>
+                                <th class="column-title">Sensor Type</th>
+                                <th class="column-title">Sensor Region</th>
+                                <th class="column-title">Sensor Status</th>
+                                <th class="column-title">Total Active Hours</th>
+                                <th class="column-title">Launch Date</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr class="even pointer" ng-repeat="cluster in clusterInfo">
+                                <td class="a-center ">
+                                    <input type="radio" class="flat" name="table_records">
+                                </td>
+                                <td class=" ">{{$index + 1}}</td>
+                                <td class=" ">{{cluster.SensorHubName}}</td>
+                                <td class=" ">{{cluster.SensorId}}</td>
+                                <td class=" ">{{cluster.SensorType}}</td>
+                                <td class=" ">{{cluster.Region}}</td>
+                                <td class=" ">{{cluster.Status}}</td>
+                                <td class=" ">{{cluster.ActiveHours}}</td>
+                                <td class=" ">{{cluster.LaunchDate}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Monitor Results in Graph <b>Active Hours vs Sensors</b></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+
+                    <p>Monitoring Results for cluster {{sensor.SensorHubName}} is as follows</p>
+
+                    <div class="table-responsive" ng-hide = "hideClusterMonitor" >
+                        <div id="placeholder33" style="height: 160px; display: none" class="demo-placeholder"></div>
+                        <div style="width: 50%;;margin:0 auto"  >
+                            <canvas id="bar1" class="chart chart-bar" height="100" width="100"  style="margin-top: 20px" chart-data="data" chart-labels="labels" chart-series="series" chart-colors="colours">
+                            </canvas>
+                            <script>
+                                window.alert('Entered');
+                                var ctx = document.getElementById("bar1");
+                                var bar1 = new Chart(ctx, {
+                                    type: 'bar',
+                                    options: {
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</div>

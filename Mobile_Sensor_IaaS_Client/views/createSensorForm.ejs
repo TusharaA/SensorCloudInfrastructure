@@ -1,0 +1,31 @@
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Sensor Name</label>  
+  <div class="col-md-4">
+  <input id="sensorname" name="sensorname" ng-model = "sensorname" type="text" placeholder="Sensor Name" class="form-control input-md"> 
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="addSensorToHub" name="addSensorToHub" ng-click="addSensorToHub()" class="btn btn-primary">Add Sensor</button>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="cancel" name="cancel" ng-click="cancel()" class="btn btn-primary">Cancel</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+
